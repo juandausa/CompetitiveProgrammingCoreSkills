@@ -1,4 +1,4 @@
-from additionAndSubtraction import solve
+from addition_and_subtraction import solve
 from random import randrange
 
 

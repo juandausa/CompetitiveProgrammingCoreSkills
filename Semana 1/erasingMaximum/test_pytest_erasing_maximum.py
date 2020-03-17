@@ -1,4 +1,4 @@
-from erasingMaximum import eraseMaxValue
+from erasing_maximum import eraseMaxValue
 from random import randrange, shuffle
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from additionAndSubtraction import solve
+from addition_and_subtraction import solve
 import time
 import sys
 
