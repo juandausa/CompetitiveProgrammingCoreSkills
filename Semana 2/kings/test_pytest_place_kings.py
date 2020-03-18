@@ -24,6 +24,13 @@ def test_is_free_within_full_board():
     assert not is_free(1, 0, places)
     assert not is_free(1, 1, places)
 
+def test_is_free_within_full_bigboard():
+    places = [[True for x in range(100)] for y in range(100)]
+    assert not is_free(100, 0, places)
+    assert not is_free(0, 100, places)
+    assert not is_free(100, 0, places)
+    assert not is_free(100, 100, places)
+
 
 def test_stamente_one():
     assert place_kings(1, 2) == 1
@@ -43,6 +50,10 @@ def test_board_1_11():
 
 def test_board_50_50():
     assert place_kings(50, 50) == 2211
+
+
+def test_board_50_100():
+    assert place_kings(50, 100) == 4422
 
 
 def test_board_3_5():

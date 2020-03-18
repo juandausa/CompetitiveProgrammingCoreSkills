@@ -4,7 +4,7 @@ import sys
 
 def place_kings(height, width):
     recursion_limit = sys.getrecursionlimit()
-    sys.setrecursionlimit(10000)
+    sys.setrecursionlimit(200000)
     if (height == 1 and width == 1):
         return 0
 
