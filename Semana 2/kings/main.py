@@ -4,7 +4,8 @@ import sys
 
 
 def main():
-    print(place_kings(1,2))
+    matrixBounds = list(map(int, input().split()))
+    print(place_kings(matrixBounds[0], matrixBounds[1]))
 
 
 if __name__ == '__main__':
