@@ -1,8 +1,7 @@
 class Item:
-    def __init__(self, weight, value, quantity = 0):
+    def __init__(self, weight, value):
         self.weight = weight
         self.value = value
-        self.quantity = quantity
 
 
     def __eq__(self, other):
