@@ -2,47 +2,76 @@ from occurrence import Occurrence
 from copy import copy
 
 
-class SegmentTree:
+class Node(object):
+    def __init__(self, start, end):
+        self.start = start
+        self.end = end
+        self.value = None
+        self.left = None
+        self.right = None
+        self.childs = end - start + 1
+
+
+class SegmentTree(object):
     def __init__(self, phrase):
-        self.tree = build_tree(phrase)
-        self.total_elements = len(phrase)
+        #helper function to create the tree from input array
+        def createTree(phrase, left, right):
+            # base case
+            if left > right:
+                return None
 
-    def query(self, lower, higher):
-        return query_tree(self.tree, self.total_elements, lower, higher)
+            # leaf node
+            if left == right:
+                node = Node(left, right)
+                node.value = Occurrence(phrase[left], 1)
+                return node
 
+            middle = (left + right) // 2
+            root = Node(left, right)
 
-def build_tree(phrase):
-    segment_tree = [0] * (2 * len(phrase))
-    n = len(phrase)
-    # insert leaf nodes in tree
-    for i in range(n):
-        segment_tree[n + i] = Occurrence(phrase[i], 1)
+            # recursively build the Segment tree
+            root.left = createTree(phrase, left, middle)
+            root.right = createTree(phrase, middle+1, right)
 
-    # build the tree by calculating parents
-    for i in range(n - 1, 0, -1):
-        previous_value = copy(segment_tree[i << 1])
-        previous_value.add(segment_tree[i << 1 | 1])
-        segment_tree[i] = previous_value
+            # Total stores the sum of all leaves under root
+            # i.e. those elements lying between (start, end)
+            newValue = copy(root.left.value)
+            newValue.add(root.right.value)
+            root.value = newValue
 
-    return segment_tree
+            return root
 
+        self.root = createTree(phrase, 0, len(phrase)-1)
 
-def query_tree(segment_tree, n, lower, higher):
+    def getMostFrequetCharacter(self, left, right):
+        #Helper function to calculate range sum
+        def calculateMostrFrequetCharacter(root, left, right):
 
-    result = Occurrence()
-    lower += n
-    higher += n
+            #If the range exactly matches the root, we already have the sum
+            if root.start == left and root.end == right:
+                return root.value
 
-    while lower < higher:
-        if (lower & 1):
-            result.add(segment_tree[lower])
-            lower += 1
+            mid = (root.start + root.end) // 2
 
-        if (higher & 1):
-            higher -= 1
-            result.add(segment_tree[higher])
+            #If end of the range is less than the mid, the entire interval lies
+            #in the left subtree
+            if right <= mid:
+                return calculateMostrFrequetCharacter(root.left, left, right)
 
-        lower >>= 1
-        higher >>= 1
+            #If start of the interval is greater than mid, the entire inteval lies
+            #in the right subtree
+            elif left >= mid + 1:
+                return calculateMostrFrequetCharacter(root.right, left, right)
 
-    return result.get_element_with_maximum_occurrence()
+            #Otherwise, the interval is split. So we calculate the sum recursively,
+            #by splitting the interval
+            else:
+                leftValues = copy(
+                    calculateMostrFrequetCharacter(root.left, left, mid))
+                leftValues.add(calculateMostrFrequetCharacter(
+                    root.right, mid+1, right))
+                return leftValues
+
+        assert left >= 1
+        assert right <= self.root.childs
+        return calculateMostrFrequetCharacter(self.root, left-1, right-1).get_element_with_maximum_occurrence()

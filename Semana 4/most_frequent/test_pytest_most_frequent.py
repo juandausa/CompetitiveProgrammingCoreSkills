@@ -34,9 +34,30 @@ def test_add_occurrences_with_intersection():
 def test_stament_one():
     '''
     3 
-    1 1 
-    1 7 
-    2 4
+    1 1 a 
+    1 7 a
+    2 4 b
     '''
     tree = SegmentTree("abacaba")
-    assert tree.query(1, 1) == "a"
+    assert tree.getMostFrequetCharacter(1, 1) == "a"
+    assert tree.getMostFrequetCharacter(2, 2) == "b"
+    assert tree.getMostFrequetCharacter(1, 7) == "a"
+    assert tree.getMostFrequetCharacter(2, 4) == "b"
+
+
+def test_stament_two():
+    '''
+    3 
+    1 1 
+    2 2 
+    1 2 
+    2 3 
+    1 1 
+    2 4
+    '''
+    tree = SegmentTree("abba")
+    assert tree.getMostFrequetCharacter(1, 1) == "a"
+    assert tree.getMostFrequetCharacter(2, 2) == "b"
+    assert tree.getMostFrequetCharacter(1, 2) == "a"
+    assert tree.getMostFrequetCharacter(2, 3) == "b"
+    assert tree.getMostFrequetCharacter(2, 4) == "b"

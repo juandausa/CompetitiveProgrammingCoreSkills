@@ -10,8 +10,9 @@ class Occurrence:
             self.occurrences = dict()
 
     def add(self, other_occurrence):
-        self.occurrences = dict(
-            Counter(self.occurrences) + Counter(other_occurrence.occurrences))
+        if not other_occurrence is None:
+            self.occurrences = dict(
+                Counter(self.occurrences) + Counter(other_occurrence.occurrences))
 
     def get_occurrence(self, character):
         return self.occurrences[character] if character in self.occurrences.keys() else 0
