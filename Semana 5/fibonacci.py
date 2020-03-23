@@ -1,10 +1,19 @@
 def fib(n):
-    if n <= 1:
-      return n
+  if n <= 1:
+    return n
 
-    previous, current = 0, 1
-    for _ in range(n - 1):
-        new_current = previous + current
-        previous, current = current, new_current
+  previous, current = 0, 1
+  for _ in range(n - 1):
+    new_current = previous + current
+    previous, current = current, new_current
 
-    return current
+  return current
+
+
+def main():
+  n = int(input("Input N: "))
+  print(fib(n))
+
+
+if __name__ == '__main__':
+  main()
