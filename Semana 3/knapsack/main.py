@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
-from compare_list import compare
+from knapsack import calculate_best_items
+from item import Item
 import sys
 
 
 def main():
-    n = int(input())
-    list_a = list(map(int, input().split()))
-    list_b = list(map(int, input().split()))
-    assert len(list_a) == len(list_b) == n
-    print(compare(list_a, list_b))
+
+    items_count, weight = map(int, input().split())
+    items = []
+    for _i in range(items_count):
+        item_weight, item_value = map(int, input().split())
+        items.append(Item(item_weight, item_value))
+
+    print(calculate_best_items(items, weight))
 
 
 if __name__ == '__main__':
