@@ -14,13 +14,3 @@ def longest_subsequence(A, last_index=-1, previous_calculations=dict()):
 
     previous_calculations[last_index] = result
     return previous_calculations[last_index]
-
-
-def main():
-    sequence = [7, 2, 1, 3, 8, 4, 9, 10, 34, 12, 67, 15, 7, 5, 68, 90, 103]
-    print(sequence)
-    print(longest_subsequence(sequence))
-
-
-if __name__ == '__main__':
-    main()
