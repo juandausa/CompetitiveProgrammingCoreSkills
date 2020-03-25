@@ -6,7 +6,7 @@ def test_statement_one():
     3
     1 2 1
     '''
-    assert minimum_sort([1,2,1]) == 1
+    assert minimum_sort([1, 2, 1]) == 1
 
 
 def test_statement_two():
@@ -43,15 +43,33 @@ def test_statement_five():
 
 def test_statement_six():
     '''
-    30
-    10 9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1
+    20
+    10 9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1
     '''
-    assert minimum_sort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 27
+    assert minimum_sort([10, 9, 8,
+                         7, 6, 5, 4, 3, 2, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 18
 
 
 def test_statement_seven():
     '''
-    3
+    4
     10 9 8 7
     '''
     assert minimum_sort([10, 9, 8, 7]) == 3
+
+
+def test_statement_eight():
+    '''
+    3
+    10 9 8 7
+    '''
+    assert minimum_sort([10, 9, 8, 1]) == 9
+
+
+def test_statement_nine():
+    '''
+    30
+    10 9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1 10 9 8 7 6 5 4 3 2 1
+    '''
+    assert minimum_sort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 10, 9, 8,
+                         7, 6, 5, 4, 3, 2, 1, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]) == 27

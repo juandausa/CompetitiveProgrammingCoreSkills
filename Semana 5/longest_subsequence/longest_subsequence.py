@@ -1,4 +1,6 @@
-def longest_subsequence(A, last_index=-1, previous_calculations=dict()):
+def longest_subsequence(A, last_index=-1, previous_calculations=None):
+    if (previous_calculations is None):
+        previous_calculations = dict()
     if last_index == -1:
         last_element = float("-inf")
     elif last_index in previous_calculations.keys():
